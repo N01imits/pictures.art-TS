@@ -112,17 +112,32 @@ export const modals = (): void => {
 		return scrollWidth;
 	}
 
-	function openByScroll(showSelector: string): void {
-		window.addEventListener('scroll', () => {
-			if (
-				!btnPressed &&
-				window.scrollY + document.documentElement.clientHeight >=
-					document.documentElement.scrollHeight
-			) {
-				(document.querySelector(showSelector) as HTMLElement).click();
-			}
-		});
-	}
+	// function openByScroll(showSelector: string): void {
+	// 	window.addEventListener('scroll', () => {
+	// 		if (
+	// 			!btnPressed &&
+	// 			window.scrollY + document.documentElement.clientHeight >=
+	// 				document.documentElement.scrollHeight
+	// 		) {
+	// 			(document.querySelector(showSelector) as HTMLElement).click();
+	// 		}
+	// 	});
+	// }
+
+	const footer = document.querySelector('#footer') as HTMLElement;
+	const gift = document.querySelector('.fixed-gift') as HTMLElement;
+	const observer = new IntersectionObserver(
+		(entries, observer) => {
+			entries.forEach(entry => {
+				if (entry.isIntersecting && !btnPressed) {
+					gift.click();
+					observer.unobserve(entry.target);
+				}
+			});
+		},
+		{ threshold: 0.9 },
+	);
+	observer.observe(footer);
 
 	bindModal({
 		triggerSelector: '.button-design',
@@ -143,6 +158,6 @@ export const modals = (): void => {
 		destroy: true,
 	});
 
-	openByScroll('.fixed-gift');
+	// openByScroll('.fixed-gift');
 	showModalByTime('.popup-consultation', 65000);
 };
