@@ -33,24 +33,26 @@ export const sliders = ({ slides, direction, previousBtn, nextBtn }: ISliders): 
 		showSlides((slideIndex += slideNumber));
 	};
 
-	try {
-		const previousButton: HTMLElement | null = previousBtn
-			? document.querySelector(previousBtn)
-			: null;
-		const nextButton: HTMLElement | null = nextBtn ? document.querySelector(nextBtn) : null;
+	const previousButton: HTMLElement | null = previousBtn
+		? document.querySelector(previousBtn)
+		: null;
+	const nextButton: HTMLElement | null = nextBtn ? document.querySelector(nextBtn) : null;
 
-		previousButton?.addEventListener('click', () => {
+	if (previousButton) {
+		previousButton.addEventListener('click', () => {
 			changeNumberSlide(-1);
 			allSlides[slideIndex - 1].classList.remove('slideInRight');
 			allSlides[slideIndex - 1].classList.add('slideInLeft');
 		});
+	}
 
-		nextButton?.addEventListener('click', () => {
+	if (nextButton) {
+		nextButton.addEventListener('click', () => {
 			changeNumberSlide(1);
 			allSlides[slideIndex - 1].classList.remove('slideInRight');
 			allSlides[slideIndex - 1].classList.add('slideInRight');
 		});
-	} catch (error) {}
+	}
 
 	const activateAnimation = () => {
 		if (direction === 'vertical') {
