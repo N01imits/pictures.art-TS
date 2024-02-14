@@ -12,7 +12,7 @@ export const forms = () => {
 		fail: '/fail.png',
 	};
 
-	const postData = async (url: string, data: any) => {
+	const postData = async (url: string, data: string) => {
 		const result = await fetch(url, {
 			method: 'POST',
 			headers: {
@@ -47,18 +47,14 @@ export const forms = () => {
 	uploads.forEach(upload => {
 		upload.addEventListener('input', () => {
 			const file = upload.files?.[0];
-			if (file) {
-				let fileName = file.name.split('.')[0];
-				const extension = file.name.split('.')[1];
-
-				if (fileName.length > 6) {
-					fileName = fileName.substring(0, 6) + '...';
-				}
-
-				const newFileName = `${fileName}.${extension}`;
-				if (upload.previousElementSibling) {
-					upload.previousElementSibling.textContent = newFileName;
-				}
+			if (!file) return;
+			let [fileName, extension] = file.name.split('.');
+			if (fileName.length > 6) {
+				fileName = `${fileName.substring(0, 6)}...`;
+			}
+			const newFileName = `${fileName}.${extension}`;
+			if (upload.previousElementSibling) {
+				upload.previousElementSibling.textContent = newFileName;
 			}
 		});
 	});
@@ -95,7 +91,6 @@ export const forms = () => {
 				const file = fileInput.files[0];
 				const base64Image = await getBase64(file);
 				formData.append('upload', base64Image);
-				console.log(base64Image);
 			}
 
 			const jsonData = formDataToJson(formData);
