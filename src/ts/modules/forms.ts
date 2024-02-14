@@ -7,9 +7,9 @@ export const forms = () => {
 		loading: 'Загрузка...',
 		success: 'Спасибо! Скоро мы с вами свяжемся.',
 		failure: 'Что-то пошло не так...',
-		spinner: './assets/img/spinner.gif',
-		ok: './assets/img/ok.png',
-		fail: './assets/img/fail.png',
+		spinner: '/spinner.gif',
+		ok: '/ok.png',
+		fail: '/fail.png',
 	};
 
 	const postData = async (url: string, data: any) => {
