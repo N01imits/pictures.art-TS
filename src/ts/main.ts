@@ -2,6 +2,7 @@ import { modals } from './modules/modals';
 import { sliders } from './modules/sliders';
 import { forms } from './modules/forms';
 import { checkTextInputs } from './modules/checkTextInputs';
+import { mask } from './modules/mask';
 
 document.addEventListener('DOMContentLoaded', () => {
 	modals();
@@ -16,6 +17,9 @@ document.addEventListener('DOMContentLoaded', () => {
 		direction: 'vertical',
 	});
 	forms();
+  mask('[name="phone"]');
 	checkTextInputs('[name="name"]');
 	checkTextInputs('[name="message"]');
+
+
 });
