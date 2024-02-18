@@ -3,6 +3,7 @@ import { sliders } from './modules/sliders';
 import { forms } from './modules/forms';
 import { checkTextInputs } from './modules/checkTextInputs';
 import { mask } from './modules/mask';
+import { showMoreStyles } from './modules/showMoreStyles';
 
 document.addEventListener('DOMContentLoaded', () => {
 	modals();
@@ -17,9 +18,8 @@ document.addEventListener('DOMContentLoaded', () => {
 		direction: 'vertical',
 	});
 	forms();
-  mask('[name="phone"]');
+	mask('[name="phone"]');
 	checkTextInputs('[name="name"]');
 	checkTextInputs('[name="message"]');
-
-
+	showMoreStyles('.button-styles', '.styles-2');
 });
