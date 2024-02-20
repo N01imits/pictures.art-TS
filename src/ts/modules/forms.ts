@@ -1,7 +1,12 @@
+import { postData } from '../services/requests';
+
 export const forms = () => {
-	const forms: NodeListOf<HTMLFormElement> = document.querySelectorAll('form');
-	const inputs: NodeListOf<HTMLInputElement> = document.querySelectorAll('input');
-	const uploads: NodeListOf<HTMLInputElement> = document.querySelectorAll('[name="upload"]');
+	const forms: NodeListOf<HTMLFormElement> =
+		document.querySelectorAll('form');
+	const inputs: NodeListOf<HTMLInputElement> =
+		document.querySelectorAll('input');
+	const uploads: NodeListOf<HTMLInputElement> =
+		document.querySelectorAll('[name="upload"]');
 
 	const messages = {
 		loading: 'Загрузка...',
@@ -10,18 +15,6 @@ export const forms = () => {
 		spinner: '/spinner.gif',
 		ok: '/ok.png',
 		fail: '/fail.png',
-	};
-
-	const postData = async (url: string, data: string) => {
-		const result = await fetch(url, {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-			},
-			body: data,
-		});
-
-		return await result.text();
 	};
 
 	const getBase64 = async (file: File): Promise<string> => {
@@ -86,7 +79,8 @@ export const forms = () => {
 			statusMessage.append(textMessage);
 
 			const formData = new FormData(form);
-			const fileInput: HTMLInputElement | null = form.querySelector('input[type="file"]');
+			const fileInput: HTMLInputElement | null =
+				form.querySelector('input[type="file"]');
 			if (fileInput?.files?.length) {
 				const file = fileInput.files[0];
 				const base64Image = await getBase64(file);
@@ -96,7 +90,10 @@ export const forms = () => {
 			const jsonData = formDataToJson(formData);
 
 			try {
-				await postData('https://postsimpleserver.onrender.com/api/data', jsonData);
+				await postData(
+					'https://postsimpleserver.onrender.com/api/data',
+					jsonData,
+				);
 				statusImg.setAttribute('src', messages.ok);
 				textMessage.textContent = messages.success;
 			} catch (error) {
