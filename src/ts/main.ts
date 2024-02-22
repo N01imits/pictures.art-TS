@@ -4,6 +4,7 @@ import { forms } from './modules/forms';
 import { checkTextInputs } from './modules/checkTextInputs';
 import { mask } from './modules/mask';
 import { showMoreStyles } from './modules/showMoreStyles';
+import { calc } from './modules/calc';
 
 document.addEventListener('DOMContentLoaded', () => {
 	modals();
@@ -22,4 +23,11 @@ document.addEventListener('DOMContentLoaded', () => {
 	checkTextInputs('[name="name"]');
 	checkTextInputs('[name="message"]');
 	showMoreStyles('.button-styles', '#styles .row');
+	calc({
+		size: '#size',
+		material: '#material',
+		options: '#options',
+		promocode: '.promocode',
+		result: '.calc-price',
+	});
 });
