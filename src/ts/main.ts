@@ -29,5 +29,6 @@ document.addEventListener('DOMContentLoaded', () => {
 		options: '#options',
 		promocode: '.promocode',
 		result: '.calc-price',
+		resultForServer: 'input[name="result-price"]',
 	});
 });

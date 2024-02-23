@@ -1,32 +1,41 @@
-import { postData } from '../services/requests';
-
 interface Calc {
 	size: string;
 	material: string;
 	promocode: string;
 	options: string;
 	result: string;
+	resultForServer: string;
 }
 
-export const calc = ({ size, material, promocode, options, result }: Calc) => {
+export const calc = ({
+	size,
+	material,
+	promocode,
+	options,
+	result,
+	resultForServer,
+}: Calc) => {
 	const sizeValue = document.querySelector<HTMLSelectElement>(size);
 	const materialValue = document.querySelector<HTMLSelectElement>(material);
 	const optionsValue = document.querySelector<HTMLSelectElement>(options);
 	const promocodeValue = document.querySelector<HTMLInputElement>(promocode);
 	const resultValue = document.querySelector<HTMLDivElement>(result);
+	const resultValueForServer =
+		document.querySelector<HTMLInputElement>(resultForServer);
 
 	if (
 		!sizeValue ||
 		!materialValue ||
 		!optionsValue ||
 		!promocodeValue ||
-		!resultValue
+		!resultValue ||
+		!resultValueForServer
 	) {
 		console.error('Один или несколько элементов не найдены');
 		return;
 	}
 
-	const culcSum = async () => {
+	const calcSum = async () => {
 		if (!sizeValue.value || !materialValue.value) {
 			resultValue.textContent =
 				'Для расчета нужно выбрать размер и материал картины';
@@ -43,27 +52,11 @@ export const calc = ({ size, material, promocode, options, result }: Calc) => {
 			resultValue.textContent = sum.toString();
 		}
 
-		const dataToSend = JSON.stringify({
-			size: sizeValue.value,
-			material: materialValue.value,
-			options: optionsValue.value,
-			promocode: promocodeValue.value,
-			totalCost: resultValue.textContent,
-		});
-
-		try {
-			const response = await postData(
-				'https://postsimpleserver.onrender.com/api/data',
-				dataToSend,
-			);
-			console.log('Ответ сервера:', response);
-		} catch (error) {
-			console.error('Ошибка при отправке данных:', error);
-		}
+		resultValueForServer.value = resultValue.textContent;
 	};
 
-	sizeValue.addEventListener('change', culcSum);
-	materialValue.addEventListener('change', culcSum);
-	optionsValue.addEventListener('change', culcSum);
-	promocodeValue.addEventListener('input', culcSum);
+	sizeValue.addEventListener('change', calcSum);
+	materialValue.addEventListener('change', calcSum);
+	optionsValue.addEventListener('change', calcSum);
+	promocodeValue.addEventListener('input', calcSum);
 };
