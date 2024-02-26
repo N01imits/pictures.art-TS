@@ -1,8 +1,8 @@
 export const filter = (): void => {
-	const menu = document.querySelector('.portfolio-menu') as HTMLElement,
-		wrapper = document.querySelector('.portfolio-wrapper') as HTMLElement,
-		no = document.querySelector('.portfolio-no') as HTMLElement,
-		items = wrapper.querySelectorAll('.all, .lovers, .chef, .girl, .guy');
+	const menu = document.querySelector('.portfolio-menu') as HTMLElement;
+	const wrapper = document.querySelector('.portfolio-wrapper') as HTMLElement;
+	const no = document.querySelector('.portfolio-no') as HTMLElement;
+	const items = wrapper.querySelectorAll('.all, .lovers, .chef, .girl, .guy');
 
 	const hideAllItems = () => {
 		items.forEach(item => {
@@ -28,12 +28,11 @@ export const filter = (): void => {
 
 	menu.addEventListener('click', (e: MouseEvent) => {
 		const target = e.target as HTMLElement;
-		if (target && target.tagName === 'LI') {
+		const filter = target.dataset.filter;
+		if (filter) {
 			hideAllItems();
-			showItems(`.${target.classList.item(0)}`);
-			menu.querySelectorAll('li').forEach(btn =>
-				btn.classList.remove('active'),
-			);
+			showItems(`.${filter}`);
+			menu.querySelectorAll('li').forEach(btn => btn.classList.remove('active'));
 			target.classList.add('active');
 		}
 	});
