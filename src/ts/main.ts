@@ -5,6 +5,7 @@ import { checkTextInputs } from './modules/checkTextInputs';
 import { mask } from './modules/mask';
 import { showMoreStyles } from './modules/showMoreStyles';
 import { calc } from './modules/calc';
+import { filter } from './modules/filter';
 
 document.addEventListener('DOMContentLoaded', () => {
 	modals();
@@ -31,4 +32,5 @@ document.addEventListener('DOMContentLoaded', () => {
 		result: '.calc-price',
 		resultForServer: 'input[name="result-price"]',
 	});
+	filter();
 });
