@@ -6,6 +6,7 @@ import { mask } from './modules/mask';
 import { showMoreStyles } from './modules/showMoreStyles';
 import { calc } from './modules/calc';
 import { filter } from './modules/filter';
+import { pictureSize } from './modules/pictureSize';
 
 document.addEventListener('DOMContentLoaded', () => {
 	modals();
@@ -33,4 +34,5 @@ document.addEventListener('DOMContentLoaded', () => {
 		resultForServer: 'input[name="result-price"]',
 	});
 	filter();
+	pictureSize('.sizes-block');
 });
