@@ -36,6 +36,5 @@ document.addEventListener('DOMContentLoaded', () => {
 	});
 	filter();
 	pictureSize('.sizes-block');
-	// accordion('.accordion-heading', '.accordion-blocks');
 	accordion('.accordion-heading');
 });

@@ -2,28 +2,36 @@
 @font-face {
 	font-family: 'Circe Light';
 	src: url('../fonts/Circe-Light.eot');
-	src: url('../fonts/Circe-Light.eot?#iefix') format('embedded-opentype'), url('../fonts/Circe-Light.woff') format('woff'), url('../fonts/Circe-Light.ttf') format('truetype');
+	src: url('../fonts/Circe-Light.eot?#iefix') format('embedded-opentype'),
+		url('../fonts/Circe-Light.woff') format('woff'),
+		url('../fonts/Circe-Light.ttf') format('truetype');
 	font-weight: normal;
 	font-style: normal;
 }
 @font-face {
 	font-family: 'Circe Regular';
 	src: url('../fonts/Circe-Regular.eot');
-	src: url('../fonts/Circe-Regular.eot?#iefix') format('embedded-opentype'), url('../fonts/Circe-Regular.woff') format('woff'), url('../fonts/Circe-Regular.ttf') format('truetype');
+	src: url('../fonts/Circe-Regular.eot?#iefix') format('embedded-opentype'),
+		url('../fonts/Circe-Regular.woff') format('woff'),
+		url('../fonts/Circe-Regular.ttf') format('truetype');
 	font-weight: normal;
 	font-style: normal;
 }
 @font-face {
 	font-family: 'Circe Bold';
 	src: url('../fonts/Circe-Bold.eot');
-	src: url('../fonts/Circe-Bold.eot?#iefix') format('embedded-opentype'), url('../fonts/Circe-Bold.woff') format('woff'), url('../fonts/Circe-Bold.ttf') format('truetype');
+	src: url('../fonts/Circe-Bold.eot?#iefix') format('embedded-opentype'),
+		url('../fonts/Circe-Bold.woff') format('woff'),
+		url('../fonts/Circe-Bold.ttf') format('truetype');
 	font-weight: normal;
 	font-style: normal;
 }
 @font-face {
 	font-family: 'Circe Extra Bold';
 	src: url('../fonts/Circe-ExtraBold.eot');
-	src: url('../fonts/Circe-ExtraBold.eot?#iefix') format('embedded-opentype'), url('../fonts/Circe-ExtraBold.woff') format('woff'), url('../fonts/Circe-ExtraBold.ttf') format('truetype');
+	src: url('../fonts/Circe-ExtraBold.eot?#iefix') format('embedded-opentype'),
+		url('../fonts/Circe-ExtraBold.woff') format('woff'),
+		url('../fonts/Circe-ExtraBold.ttf') format('truetype');
 	font-weight: normal;
 	font-style: normal;
 }
@@ -911,10 +919,6 @@ h4 {
 	opacity: 0;
 	transition: all 0.3s ease;
 	overflow: hidden;
-
-	/* display: none; */
-	/* margin-top: 1rem; */
-	/* padding: 3rem 4rem; */
 }
 .often-questions .accordion-block.active-content {
 	overflow: visible;
