@@ -14,70 +14,30 @@ export const scrolling = (upSelector: string) => {
 		}
 	});
 
-	const element = document.documentElement;
-	const body = document.body;
-
-	const calcScroll = (): void => {
-		upElement.addEventListener('click', event => {
-			const scrollTop = Math.round(body.scrollTop || element.scrollTop);
-			const targetElement = event.currentTarget as HTMLAnchorElement;
-			if (targetElement.hash !== '') {
+	const smoothScroll = (): void => {
+		const anchorLinks: NodeListOf<HTMLAnchorElement> =
+			document.querySelectorAll('a[href^="#"]');
+		anchorLinks.forEach((anchorLink: HTMLAnchorElement) => {
+			anchorLink.addEventListener('click', (event: Event) => {
 				event.preventDefault();
-				let hashElement: HTMLElement | null = document.querySelector(
-					targetElement.hash,
-				);
-				let hashElementTop: number = 0;
-				while (hashElement && hashElement.offsetParent) {
-					hashElementTop += hashElement.offsetTop;
-					hashElement = hashElement.offsetParent as HTMLElement;
+				const clickedAnchorElement =
+					event.currentTarget as HTMLAnchorElement;
+				const hash: string | null =
+					clickedAnchorElement.getAttribute('href');
+				if (!hash) {
+					return;
 				}
-				hashElementTop = Math.round(hashElementTop);
-				smoothScroll({
-					from: scrollTop,
-					to: hashElementTop,
-					hash: targetElement.hash,
-				});
-			}
+				const scrollingTarget: HTMLElement | null =
+					document.querySelector(hash);
+				if (scrollingTarget) {
+					scrollingTarget.scrollIntoView({
+						behavior: 'smooth',
+						block: 'start',
+					});
+				}
+			});
 		});
 	};
 
-	interface ISmoothScroll {
-		from: number;
-		to: number;
-		hash: string;
-	}
-
-	const smoothScroll = ({ from, to, hash }: ISmoothScroll): void => {
-		let timeInterval = 1;
-		let prevScrollTop = 0;
-		let speed = 0;
-
-		if (from < to) {
-			speed = 30;
-		} else {
-			speed = -30;
-		}
-
-		const move = setInterval(() => {
-			const scrollTop = Math.round(body.scrollTop || element.scrollTop);
-			if (
-				prevScrollTop === scrollTop ||
-				(to > from && scrollTop >= to) ||
-				(to < from && scrollTop <= to)
-			) {
-				clearInterval(move);
-				history.replaceState(
-					history.state,
-					document.title,
-					location.href.replace(/#.*$/g, '') + hash,
-				);
-			} else {
-				body.scrollTop += speed;
-				element.scrollTop += speed;
-				prevScrollTop = scrollTop;
-			}
-		}, timeInterval);
-	};
-
-	calcScroll();
+	smoothScroll();
 };
