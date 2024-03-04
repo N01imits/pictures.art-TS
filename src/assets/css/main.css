@@ -1290,6 +1290,9 @@ h4 {
 	border: 1px solid white;
 	transition: 1s all;
 }
+.highlighted {
+	animation: swing 0.8s;
+}
 @media (max-width: 1399px) {
 	.paints {
 		display: none;
